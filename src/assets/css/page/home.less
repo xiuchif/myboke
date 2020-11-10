@@ -1,0 +1,77 @@
+// 我的资料
+.user {
+  .uDetail {
+    box-sizing: border-box;
+    padding: 10px 0;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .uName {
+      height: 50px;
+      text-align: start;
+    }
+  }
+  .uShow {
+    
+    text-align: start;
+    .show {
+      padding: 4px 4px 4px 20px;
+      .iconfont {
+        margin-right: 10px;
+      }
+      .git {
+        color: @myBlue;
+      }
+    }
+  }
+}
+.aliyun {
+  .aliItem {
+    margin: 5px 0 15px 0;
+  }
+  .bottom {
+    width: 120px;
+    color: #2f54eb !important;
+    border: 1px solid #e8eaec;
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+}
+.hotList {
+  .hotListItem {
+    line-height: 1.5;
+    margin-top: 10px;
+    color: #333;
+    .views {
+      color: grey;
+      font-size: 18px;
+      margin-right: 5px;
+// display: inline;
+      span {
+        // line-height: 1;
+        // color: red;
+        font-size: 13px;
+      }
+     
+      .iconfont {
+        font-size: 17px;
+        margin: 0 5px;
+        vertical-align: bottom;
+      }
+      // vertical-align: baseline;
+    }
+    .hotTitle{
+      // width: 100%;
+      text-overflow: -o-ellipsis-lastline;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
