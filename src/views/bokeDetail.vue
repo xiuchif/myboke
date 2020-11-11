@@ -51,7 +51,7 @@
           </div>
         </card>
         <!-- 热门文章 -->
-        <card :detail="leftShow[2]">
+        <card :detail="leftShow[2]" style="margin-bottom:0">
           <div class="hotList flex flex-direction cardContent">
             <div
               v-for="(item, index) in hotBokeList"
@@ -88,14 +88,15 @@
 import card from "components/common/card.vue";
 export default {
   name: "bokeDetail",
-  components:{
-      card
+  components: {
+    card,
   },
   data() {
     return {
       id: 0,
       detail: {},
-      leftShow:[],
+      hotBokeList: [],
+      leftShow: [],
     };
   },
   created(option) {
@@ -106,6 +107,7 @@ export default {
   },
   methods: {
     async loadData() {
+      this.getHotBokeList();
       let result = await this.$http(
         this.$ifa.bokeDetail + "?id=" + this.id,
         {},
@@ -117,6 +119,18 @@ export default {
         this.detail = result.data;
       } else {
         this.$msg.error(result.msg);
+      }
+    },
+    async getHotBokeList() {
+      let result = await this.$http(this.$ifa.hotBokeList, {}, "get");
+      console.log("热门博客", result);
+      if (result.status) {
+        this.hotBokeList = result.data;
+      } else {
+        this.$store.commit("showToast", {
+          title: "数据获取失败",
+          content: result.msg,
+        });
       }
     },
   },
@@ -133,11 +147,13 @@ export default {
 .left {
   // display: flex;
   box-sizing: content-box;
+
   width: 280px;
 }
 .bokeDetail {
-    padding: 30px 40px;
-    box-sizing: content-box;
+  padding: 30px 40px;
+//   padding-bottom: 0 !;
+  box-sizing: content-box;
   width: 100%;
   max-width: 800px;
   background-color: #fff;

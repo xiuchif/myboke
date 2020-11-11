@@ -85,11 +85,9 @@
           :detail="item"
           v-for="(item, index) in bokeList.data"
           :key="index"
-          
         >
         </boke-item>
 
-        <div class="loading" v-show="loading"><a-spin size="large" /></div>
         <div class="" style="margin: auto;" v-if="bokeList.data.length">
           <a-pagination
             :default-current="page"
@@ -100,7 +98,11 @@
         </div>
       </div>
     </div>
-
+    <!-- 加载动画 -->
+    <div class="loading" v-if="loading">
+      <p style="color: #62b4ff;">加载中,请稍等...</p>
+      <a-spin size="large" />
+    </div>
     <!-- <code>nodedaiam</code> -->
     <!-- <pre>这是什么</pre> -->
   </div>
@@ -125,7 +127,7 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
       leftShow: [],
       bokeList: { data: [] },
       hotBokeList: [],

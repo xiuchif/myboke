@@ -50,7 +50,8 @@ export default {
   methods: {
     toDetail(){
       console.log("跳转的博客",this.detail)
-      this.$router.push("/bokeDetail?id="+this.detail.id)
+      // router.push({ path: 'register', query: { plan: 'private' }})
+     this.$router.push({path:"/bokeDetail",query:{id:this.detail.id}})
     }
   },
 };
