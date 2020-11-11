@@ -1,31 +1,16 @@
 <template>
-  <div id="editor">
-    <!--:ishljs为高亮-->
-    <!--:v-model获取到编辑的 Markdown代码，需要用marked解析成html-->
-    <!--change为更改事件，一更改触发-->
-    <!--imgAdd为添加图片调用的函数-->
-    <!--imgDel为删除图片调用的函数-->
-    <!-- <mavon-editor
-      ref="md"
-      style="height: 100%"
-      :ishljs="true"
-      v-model="mavonValue"
-      @change="chang"
-      @imgAdd="imgAdd"
-      @imgDel="imgDel"
-    ></mavon-editor> -->
-    <!-- <mavon-editor v-model="value"/> -->
+  <div id="editorBox">
+   
     <div id="editor">
       <v-md-editor
         v-model="text"
         height="580px"
-        left-toolbar="undo redo | h  |tip | "
-        mode="editable"
+        :disabled-menus="[]"
         :autofoces="true"
       ></v-md-editor>
     </div>
-
-    <!-- <button @click="uploadImg">统一上传图片</button> -->
+    <div @click="sumbit">提交</div>
+ 
   </div>
 </template>
 <script>
@@ -71,6 +56,14 @@ export default {
     chang: function () {
       //解析成html
       //   console.log(marked(this.mavonValue));
+    },
+    async sumbit(){
+      console.log(this.text)
+      let param={
+        html:this.text
+      }
+      let result= await this.$http(this.$ifa.addBoke,param)
+      console.log(result)
     },
     // 绑定@imgAdd event
     imgAdd(pos, file) {

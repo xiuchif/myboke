@@ -4,6 +4,7 @@
       class="title bigFont"
       @mouseover="addUnderLine($event)"
       @mouseleave="removeUnderLine($event)"
+      @click="toDetail()"
     >
       {{ detail.title }}
     </p>
@@ -13,7 +14,7 @@
     </div>
     <p class="introduct">{{ detail.context }}</p>
     <div class="bottom flex justify-between">
-      <span class="underLine viewAll litFont">阅读全文</span>
+      <span class="underLine viewAll litFont" @click="toDetail()">阅读全文</span>
       <div class="stat litFont">
         <span
           class="statItem"
@@ -47,12 +48,10 @@ export default {
     },
   },
   methods: {
-    // addUnderLine(e){
-    //     e.target.classList.add("underLine")
-    // },
-    // removeUnderLine(e){
-    //      e.target.classList.remove("underLine")
-    // },
+    toDetail(){
+      console.log("跳转的博客",this.detail)
+      this.$router.push("/bokeDetail?id="+this.detail.id)
+    }
   },
 };
 </script>
@@ -63,6 +62,7 @@ export default {
   // width: 800px;
   flex: auto;
   max-width: 800px;
+  min-width: 800px;
   margin-bottom: 10px;
   padding: 30px 40px;
   border-radius: 4px;

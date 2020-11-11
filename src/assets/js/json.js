@@ -5,37 +5,15 @@ const homeNav = [
     name: "首页",
     content:[],
     url:"/",
-    id: 0,
+    id: 1,
   },
   {
     name: "博客",
     content:[
-      {
-        name:"标题1",
-        url:""
-      },
-      {
-        name:"标题2",
-        url:""
-      },
-      {
-        name:"标题3",
-        url:""
-      },
-      {
-        name:"标题4",
-        url:""
-      },
-      {
-        name:"标题5",
-        url:""
-      },
-      {
-        name:"标题6",
-        url:""
-      },
+      
     ],
-    id:1,
+    url:"/addBoke",
+    id:2,
   },
   {
     name: "留言",
@@ -43,7 +21,7 @@ const homeNav = [
       
     ],
     url:"/message",
-    id:2,
+    id:3,
   },
   {
     name: "关于",
@@ -57,7 +35,7 @@ const homeNav = [
         url:""
       },
     ],
-    id: 3,
+    id: 4,
   },
  
 ];

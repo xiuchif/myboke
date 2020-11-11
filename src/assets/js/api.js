@@ -61,7 +61,18 @@ const api = {
 		return (Math.random() * 10000000).toString(16).substr(0, 4) + (new Date()).getTime() + Math.random().toString().substr(
 			2, 4);
 	},
-
+	// 时间戳转时间
+	timeToDate:(timestamp)=>{
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = date.getDate() + ' ';
+        var h = date.getHours() + ':';
+        var m = date.getMinutes()<10?'0'+date.getMinutes() + ':':date.getMinutes()+':';
+        var s = date.getSeconds();
+        return Y+M+D+h+m+s;
+        // .replace(/\//g, "-") 
+    },
 	// requestData: async (url, data, type) => { //获取数据
 	// 	let rtype = type || "post";
 	// 	let result;

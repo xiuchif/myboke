@@ -27,10 +27,15 @@
         v-for="(item, index) in messageList.data"
         :key="index"
       >
-        <message-item :detail="item" @reply="addMsg"></message-item>
+        <message-item :detail="item" @reply="showReply(item)"></message-item>
       </div>
     </div>
-    <a-pagination  :default-current="page" :total="messageList.count" @change="changePage"/>
+    <a-pagination
+      :default-current="page"
+      :total="messageList.count"
+      :defaultPageSize="pagenum"
+      @change="changePage"
+    />
   </div>
 </template>
 
@@ -45,7 +50,7 @@ export default {
     return {
       page: 1,
       pagenum: 5,
-      message:"", //输入的留言
+      message: "", //输入的留言
       messageList: {},
     };
   },
@@ -74,32 +79,46 @@ export default {
       };
       let result = await this.$http(this.$ifa.messageList, param);
       console.log(result, "留言列表");
-      if(result.status){
-        this.messageList=result
-      }else{
-        this.$message.error(result.msg)
+      if (result.status) {
+        this.messageList = result;
+      } else {
+        this.$msg.error(result.msg);
       }
     },
-    async addMsg(item){
-      let user=this.$store.state.userInfo
-      let param={
-        uid:user.id,
-        username:user.username,
-        avatar:user.avatar,
-        context:this.message,
-        date:new Date().getTime(),
+    async addMsg(item) {
+      if(!this.message){
+        this.$msg.error("请输入留言")
+        return
       }
-      let result= await this.$http(this.$ifa.addMsg,param)
-      console.log("添加传参",JSON.stringify(param),"返回",result)
+      let user = this.$store.state.userInfo;
+      let date=new Date().getTime()
+      let param = {
+        uid: user.id,
+        username: user.username,
+        avatar: user.avatar,
+        context: this.message,
+        date
+      };
+      console.log("日期",date)
+      let result = await this.$http(this.$ifa.addMsg, param);
+      if (result.status) {
+        this.page = 1;
+        this.getMessageList();
+      }
+      this.message=""
+      console.log("添加传参", JSON.stringify(param), "返回", result);
     },
-    changePage(current){
-      console.log("改变页数",current)
-      
-      this.page=current
-      this.getMessageList()
+    showReply(item){
+      item.isReply=true
+    },
+
+    changePage(current) {
+      console.log("改变页数", current);
+
+      this.page = current;
+      this.getMessageList();
     },
   },
-
 };
 </script>
 
@@ -165,8 +184,6 @@ export default {
     color: #515a6e !important;
     vertical-align: bottom;
     font-size: 14px;
-
-    
   }
   .sumbitMsg {
     float: right;
@@ -183,12 +200,11 @@ export default {
 .messageList {
   width: 100%;
   .messageItem {
-   box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
     background-color: #fff;
     padding: 10px;
     margin-bottom: 10px;
-    
   }
 }
 </style>
