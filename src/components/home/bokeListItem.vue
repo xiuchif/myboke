@@ -1,13 +1,13 @@
 <template>
   <div class="bokeListItem flex flex-direction justify-between align-start">
-    <p
+    <span
       class="title bigFont"
       @mouseover="addUnderLine($event)"
       @mouseleave="removeUnderLine($event)"
       @click="toDetail()"
     >
       {{ detail.title }}
-    </p>
+    </span>
     <div class="user">
       <span class="userName">{{ detail.username }}</span>
       <span class="date midFont">{{ detail.date }}</span>
@@ -60,10 +60,10 @@ export default {
 <style lang="less" scoped>
 .bokeListItem {
   box-sizing: content-box;
-  // width: 800px;
+ 
   flex: auto;
   max-width: 800px;
-  min-width: 800px;
+  // min-width: 800px;
   margin-bottom: 10px;
   padding: 30px 40px;
   border-radius: 4px;

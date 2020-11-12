@@ -6,6 +6,7 @@
         </li>
     </ul>
     <p class="createdBy">created by 羞耻疯</p>
+    <p class="litFont">苏ICP备19073597号-1</p>
   </div>
 </template>
 
@@ -40,9 +41,10 @@ export default {
 
 <style lang="less" scoped>
     .foot{
-        // position: absolute;
+        position: relative;
         margin-top: 30px;
-        // bottom: 0;
+        bottom: 0;
+        margin-bottom: 0;
         background-color: #000000;
         width: 100%;
         height: @footHeight;

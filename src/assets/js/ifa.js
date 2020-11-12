@@ -7,5 +7,7 @@ export default{
 	addBoke:"boke/addBoke",	//添加博客
 	// 留言
 	messageList:"message/messageList",	//留言板留言列表
+	
 	addMsg:"message/add",		//发表留言或回复
+	deleteMsg:'message/delete',	//删除留言或回复
 }

@@ -17,10 +17,15 @@
 <style lang="less">
 
 @import url("./assets/css/main.css");
-@headerHeight:88px;
+// @headerHeight:88px;
 #app {
+  padding-top: calc(@headerHeight + 0px);
+  padding-bottom:0;
+  margin-bottom:0;
+  // box-sizing: border-box;
   min-height: 100vh;
   // padding-bottom: 140px;
+  word-spacing: 1px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

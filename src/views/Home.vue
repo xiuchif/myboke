@@ -3,7 +3,7 @@
     <!-- <button @click="toAdd">添加文章</button> -->
 
     <div class="content flex justify-center">
-      <div class="left flex flex-direction" v-if="myInfo">
+      <div class="left flex flex-direction" v-if="myInfo&&leftShow.length">
         <card :detail="leftShow[0]">
           <div class="user flex flex-direction cardContent">
             <div class="uDetail flex">
@@ -27,7 +27,7 @@
           </div>
         </card>
         <!-- 阿里云 -->
-        <card :detail="leftShow[1]" v-if="leftShow.length">
+        <card :detail="leftShow[1]" >
           <div class="aliyun flex flex-direction cardContent">
             <span
               class="aliItem midFont pointer"
@@ -97,7 +97,35 @@
           />
         </div>
       </div>
+      <div class="right">
+      <card :detail="{title:'最新留言'}">
+        <div class="newstMessage flex flex-direction  align-center">
+          <p style="margin-top:50px" v-if="!msgList.length">暂无留言</p>
+          <div class="msgList flex flex-direction cardContent" v-if="msgList.length">
+            <div
+              v-for="(item, index) in msgList"
+              :key="index"
+              class="msgItem"
+            >
+              <div class="msgTitle midFont pointer">
+                <span
+                  @mouseover="addUnderLine($event)"
+                  @mouseleave="removeUnderLine($event)"
+                >
+                  {{ item.context }}</span
+                >
+                <div class="flex views" style="display: inline;">
+                  <span class="iconfont icon-pinglunshu"></span>
+                  <span>{{ item.comments }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </card>
     </div>
+    </div>
+    
     <!-- 加载动画 -->
     <div class="loading" v-if="loading">
       <p style="color: #62b4ff;">加载中,请稍等...</p>
@@ -131,6 +159,7 @@ export default {
       leftShow: [],
       bokeList: { data: [] },
       hotBokeList: [],
+      msgList:[],
       myInfo: "",
       page: 1,
       pagenum: 5,
@@ -152,9 +181,9 @@ export default {
     async loadData() {
       this.loading = true;
       this.leftShow = await this.$api.json("homeLeftShow");
-      console.log("什么玩意", this.leftShow, this.leftShow.length);
       this.getBokeList();
       this.getHotBokeList();
+      this.getNewstMsg()
       this.loading = false;
     },
     async getBokeList() {
@@ -174,7 +203,6 @@ export default {
     },
     async getHotBokeList() {
       let result = await this.$http(this.$ifa.hotBokeList, {}, "get");
-      console.log("热门博客", result);
       if (result.status) {
         this.hotBokeList = result.data;
       } else {
@@ -182,6 +210,16 @@ export default {
           title: "数据获取失败",
           content: result.msg,
         });
+      }
+    },
+    // 获取最新留言
+    async getNewstMsg(){
+      let result = await this.$http(this.$ifa.messageList,{home:true})
+      console.log("最新留言",result)
+      if(result.status){
+        this.msgList=result.data
+      }else{
+        this.$msg.error(result.msg)
       }
     },
     clickLink(item) {
@@ -213,11 +251,7 @@ export default {
 
 .bokeList {
   width: auto;
-  margin-left: 10px;
+  margin:0 10px;
 }
-@media only screen and (max-width: 850px) {
-  .left {
-    display: none !important;
-  }
-}
+
 </style>

@@ -1,16 +1,20 @@
 <template>
   <div id="editorBox">
-   
+    <input
+      class="input"
+      type="text"
+      :value="title"
+      placeholder="请输入博客标题"
+    />
     <div id="editor">
       <v-md-editor
-        v-model="text"
+        v-model="boke"
         height="580px"
         :disabled-menus="[]"
         :autofoces="true"
       ></v-md-editor>
     </div>
     <div @click="sumbit">提交</div>
- 
   </div>
 </template>
 <script>
@@ -49,7 +53,8 @@ export default {
       mavonValue: "",
       imgList: [],
       value: "",
-      text: "",
+      title: "",
+      boke: "",
     };
   },
   methods: {
@@ -57,13 +62,13 @@ export default {
       //解析成html
       //   console.log(marked(this.mavonValue));
     },
-    async sumbit(){
-      console.log(this.text)
-      let param={
-        html:this.text
-      }
-      let result= await this.$http(this.$ifa.addBoke,param)
-      console.log(result)
+    async sumbit() {
+      console.log(this.text);
+      let param = {
+        html: this.text,
+      };
+      let result = await this.$http(this.$ifa.addBoke, param);
+      console.log(result);
     },
     // 绑定@imgAdd event
     imgAdd(pos, file) {
@@ -106,10 +111,26 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="less" scoped>
 #editor {
   margin: auto;
   width: 90%;
   /* height: 580px; */
+}
+
+.input {
+  margin: auto;
+  margin-bottom: 15px;
+  width: 500px;
+  // font-size: 18px;
+
+  padding: 5px;
+  border: 2px solid #a6ce92;
+  border: none;
+
+  border-radius: 5px;
+}
+.checked {
+  box-shadow: 0px 0px 3px 2px #a6ce92;
 }
 </style>

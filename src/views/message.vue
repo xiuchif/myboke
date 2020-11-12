@@ -27,13 +27,15 @@
         v-for="(item, index) in messageList.data"
         :key="index"
       >
-        <message-item :detail="item" @reply="showReply(item)"></message-item>
+        <message-item :detail="item" @reply="showReply(item)" @msg-delete="deleteMsg"></message-item>
+       
       </div>
     </div>
     <a-pagination
       :default-current="page"
       :total="messageList.count"
       :defaultPageSize="pagenum"
+      
       @change="changePage"
     />
   </div>
@@ -60,7 +62,7 @@ export default {
   methods: {
     login() {},
     async loadData() {
-      this.show();
+      // this.show();
       this.getMessageList();
     },
     async show() {
@@ -107,6 +109,11 @@ export default {
       }
       this.message=""
       console.log("添加传参", JSON.stringify(param), "返回", result);
+    },
+    deleteMsg(data){
+      console.log(data)
+      let msgList=this.messageList.data
+     msgList.splice(msgList.findIndex(e => e.id == data.id), 1) 
     },
     showReply(item){
       item.isReply=true

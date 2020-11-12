@@ -27,6 +27,7 @@
       </div>
     </div>
   </div>
+  <button @click="deleteMsg">删除</button>
   <!-- 回复 -->
   <div
     class="messageChildren flex align-center flex-wrap"
@@ -134,6 +135,17 @@ export default {
       }
       this.context = "";
       console.log("添加传参", JSON.stringify(param), "返回", result);
+    },
+    async deleteMsg() {
+      
+      
+      let result = await this.$http(this.$ifa.deleteMsg, {
+        id: this.detail.id,
+      });
+      console.log("删除返回", result);
+      if (result.status) {
+         this.$emit("msg-delete",{id:this.detail.id});
+      }
     },
   },
 };

@@ -76,8 +76,12 @@
       </div>
 
       <div class="bokeDetail">
-        <p>标题</p>
-        <p>10-30 12:12 名字 多少浏览</p>
+        <h2 class="title">{{detail.title}}</h2>
+        <div class="bokeInfo ">
+          <span class="date litFont">{{detail.date}}</span>
+          <span class="username litFont">{{detail.username}}</span>
+          <span class="views litFont">{{detail.views}}次浏览</span>
+        </div>
         <v-md-editor v-model="detail.html" mode="preview"></v-md-editor>
       </div>
     </div>
@@ -85,12 +89,14 @@
 </template>
 
 <script>
+import mixin from "assets/js/mixin.js";
 import card from "components/common/card.vue";
 export default {
   name: "bokeDetail",
   components: {
     card,
   },
+  mixins: [mixin["overEle"]],
   data() {
     return {
       id: 0,
@@ -139,6 +145,7 @@ export default {
 
 <style lang="less" scoped>
 @import "assets/css/page/home.less";
+
 .boke {
   padding: 0 4.5%;
   // padding-bottom: 150px;
@@ -158,5 +165,25 @@ export default {
   max-width: 800px;
   background-color: #fff;
   margin-left: 10px;
+  .title{
+    // color: red;
+    font-size: 20px;
+
+        margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+  }
+  .bokeInfo{
+    color: #666;
+    .username{
+      color: #ff7f21;
+      margin-left: 20px;
+    }
+    .views{
+      margin-left: 20px;
+    }
+  }
 }
 </style>

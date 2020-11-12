@@ -46,11 +46,10 @@ input::-moz-placeholder, textarea::-moz-placeholder{
 input::-ms-input-placeholder, textarea::-ms-input-placeholder{
   color:#CACDD2
 }
-textarea,button{
+textarea,button,input{
   outline: none;
 }
 button{
-  outline: none;
   cursor: pointer;
 }
 li {
