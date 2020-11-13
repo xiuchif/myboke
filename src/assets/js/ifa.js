@@ -10,4 +10,6 @@ export default{
 	
 	addMsg:"message/add",		//发表留言或回复
 	deleteMsg:'message/delete',	//删除留言或回复
+	socketLogin:"socket/login",	//聊天室登录
+	addChat:"socket/addChat",	//发送聊天内容
 }

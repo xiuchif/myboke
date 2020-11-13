@@ -1,0 +1,112 @@
+@chatColor: #dee2eb;
+@avatarSize:50px;
+.chatRoom {
+    position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  
+  .title {
+    margin: auto;
+    // width: 200px;
+    padding: 10px;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: 24px;
+    color: green;
+  }
+}
+.chatList {
+   
+  padding: 0 10px;
+  padding-top: 20px;
+//   padding-bottom:55px;
+  max-height: 500px;
+  overflow: scroll;
+//   border-bottom: 1px solid #d9d9d9;
+//   padding-bottom: 100px;
+//   min-height: 70vh;
+  .chatItem {
+    //   width:100%;
+    // background-color:#DEE2EB;
+    z-index: 100;
+    align-self: flex-start;
+    .user {
+      background-color: #fff;
+
+      margin: 0 10px;
+      img {
+        border-radius: 50%;
+        width: @avatarSize;
+        height: @avatarSize;
+      }
+      .username {
+        margin-left: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+  .selfStart {
+    align-self: flex-start;
+    justify-self: flex-end;
+  }
+  .selfEnd {
+    align-self: flex-end;
+    justify-self: flex-end;
+  }
+}
+.chatList::-webkit-scrollbar{
+ 
+
+        display: none;
+
+   
+}
+//聊天框
+.chatContent,
+.answerChat {
+  // background-color: rgba(255, 255, 0, 0.2);
+ 
+  background-color: @chatColor;
+  padding: 10px 10px;
+  // display: inline-block;
+  //   max-width: calc(100% - 210px);
+  max-width: 78.5%;
+
+  border-radius: 10px;
+  margin: 10px 0 10px 10px;
+  position: relative;
+  span {
+    // line-height: 10px;
+    // color: #ffffff;
+
+    font-size: 16px;
+    text-align: start;
+  }
+}
+.chatContent{
+     left:calc(@avatarSize + 10px);
+}
+.answerChat{
+    // left: 0;
+    right: calc(@avatarSize + 20px);
+}
+//小箭头
+.chatContent::after {
+  content: "";
+  border: 8px solid #ffffff00;
+  border-bottom: 8px solid @chatColor;
+  position: absolute;
+  top: -12px;
+  left: 5px;
+  align-self: flex-end;
+}
+.answerChat::after {
+  content: "";
+  border: 8px solid #ffffff00;
+  position: absolute;
+  top: -13px;
+  right: 5px;
+  align-self: flex-end;
+  border-bottom: 8px solid @chatColor;
+}

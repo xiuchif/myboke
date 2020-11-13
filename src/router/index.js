@@ -31,6 +31,16 @@ const routes = [
     name: 'bokeDetail',
     component: () => import(/* webpackChunkName: "about" */ '../views/bokeDetail.vue')
   },
+  {
+    path: '/socket',
+    name: 'socket',
+    component: () => import(/* webpackChunkName: "about" */ '../views/socket.vue')
+  },
+  {
+    path: '/socketLogin',
+    name: 'socketLogin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/socketLogin.vue')
+  },
   
 ]
 

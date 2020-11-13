@@ -12,6 +12,7 @@ export default createStore({
       id:11,
       avatar:"http://www.boke.xiuchif.cn/images/avatar.jpg"
     },
+    socketUserInfo:{id:false},
     myInfo:{
       username:"羞耻疯",
       sign:"阿巴阿巴",
@@ -28,10 +29,15 @@ export default createStore({
         // state.showCover=false
         state.showToast=false
       },1000)
-    }
+    },
+    socketLogin(state,payload){
+      console.log(state,"仓库")
+      state.socketUserInfo=payload
+      console.log("仓库改变",state.socketUserInfo)
+    },
   },
   actions: {
-   
+    
   },
   modules: {
   }

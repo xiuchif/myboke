@@ -83,6 +83,19 @@
           <span class="views litFont">{{detail.views}}次浏览</span>
         </div>
         <v-md-editor v-model="detail.html" mode="preview"></v-md-editor>
+      <!-- 赞赏 -->
+      <div class="postLike flex align-center justify-center">
+        <div class="toLike">
+          <span class="iconfont icon-shoucang" style="color:red"></span>
+          <span>{{detail.likes}}</span>
+        </div>
+        <div>¥赞赏</div>
+      </div>
+      <!-- 相关 -->
+      <div class="related flex flex-direction align-start">
+        <a href="">上一篇:收拾收拾</a>
+        <a href="">下一篇:是是是是是所</a>
+      </div>
       </div>
     </div>
   </div>
@@ -184,6 +197,15 @@ export default {
     .views{
       margin-left: 20px;
     }
+  }
+}
+.postLike{
+  .toLike{
+        background: rgba(255,32,32,.2);
+    color: #ff2020;
+    border: 1px solid rgba(255,32,32,.4);
+    font-size: 14px;
+        min-width: 4em;
   }
 }
 </style>

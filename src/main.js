@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import {Pagination,Spin,Message} from 'ant-design-vue';
+import {Pagination,Spin,Message,Input,Empty } from 'ant-design-vue';
 
 import App from './App.vue'
 import router from './router'
@@ -66,7 +66,9 @@ app.component("toast",toast)
 app.component("cover",cover)
 app.component(Pagination.name,Pagination)
 app.component(Spin.name,Spin)
-// app.component(Message.name,Message)
+app.component(Input.name,Input)
+app.component(Empty.name,Empty)
+// app.component(textarea.name,textarea)
 app.use(store)
 app.use(router)
 // app.use(Message)

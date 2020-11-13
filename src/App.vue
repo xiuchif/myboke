@@ -58,4 +58,8 @@
  margin-top:30px;
  min-height: calc(100vh - @headerHeight - @footHeight - 30px);
 }
+// .ant-input{
+//   border: none;
+//   border-bottom: 1px solid #d9d9d9;
+// }
 </style>
