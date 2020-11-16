@@ -171,6 +171,9 @@ ul {
   right: 0;
   margin: auto;
 }
+.avatar{
+  border-radius: 50%;
+}
 /*  -- flex弹性布局 -- */
 .flex {
   display: flex;

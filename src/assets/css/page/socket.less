@@ -1,33 +1,55 @@
 @chatColor: #dee2eb;
 @avatarSize:50px;
 .chatRoom {
-    position: relative;
+    // position: relative;
+    // top: 100px;
   width: 100%;
   max-width: 800px;
   margin: auto;
-  background-color: #fff;
+  margin-top: 1000px;
+  background-color:#fff;
   
   .title {
     margin: auto;
     // width: 200px;
     padding: 10px;
+    width: 100%;
     border-bottom: 1px solid #d9d9d9;
     font-size: 24px;
-    color: green;
+    color: #53aed8;
+    // text-align: b;
+    // text-align: ;
+    vertical-align: baseline;
+    span{
+      vertical-align:inherit     ;
+    }
+    .online{
+      // float: right;
+      // bottom: 0;
+    //  text-align: start;
+      position: absolute;
+      right: 20px;
+      bottom: 12px;
+      color: grey;
+      .num{
+        color: orange;
+      }
+    //  float: right;
+    }
   }
 }
 .chatList {
-   
+  
   padding: 0 10px;
   padding-top: 20px;
 //   padding-bottom:55px;
-  max-height: 500px;
+  height: 650px;
   overflow: scroll;
 //   border-bottom: 1px solid #d9d9d9;
 //   padding-bottom: 100px;
 //   min-height: 70vh;
   .chatItem {
-    //   width:100%;
+      width:100%;
     // background-color:#DEE2EB;
     z-index: 100;
     align-self: flex-start;
@@ -66,7 +88,7 @@
 .chatContent,
 .answerChat {
   // background-color: rgba(255, 255, 0, 0.2);
- 
+ white-space: pre-wrap;
   background-color: @chatColor;
   padding: 10px 10px;
   // display: inline-block;

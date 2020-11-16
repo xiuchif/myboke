@@ -7,6 +7,7 @@ export default createStore({
     content:"数据获取失败",
     showToast:false,
     showCover:false,
+    showNav:true,
     userInfo:{
       username:"测试名",
       id:11,
@@ -31,10 +32,11 @@ export default createStore({
       },1000)
     },
     socketLogin(state,payload){
-      console.log(state,"仓库")
+      // console.log(state,"仓库")
       state.socketUserInfo=payload
-      console.log("仓库改变",state.socketUserInfo)
+      // console.log("仓库改变",state.socketUserInfo)
     },
+    
   },
   actions: {
     

@@ -59,6 +59,7 @@
               v-for="(item, index) in hotBokeList"
               :key="index"
               class="hotListItem"
+              @click="toDetail(item)"
             >
               <div class="hotTitle midFont pointer">
                 <span
@@ -97,6 +98,7 @@
           />
         </div>
       </div>
+      <!-- 最新留言 -->
       <div class="right">
       <card :detail="{title:'最新留言'}">
         <div class="newstMessage flex flex-direction  align-center">
@@ -107,10 +109,18 @@
               :key="index"
               class="msgItem"
             >
+              <div class="msgUser flex justify-between align-center">
+                <div>
+                  <img class="avatar" :src="item.avatar" alt="">
+                <span class="userName">{{item.username}}</span>
+                </div>
+                
+                <span class="midFont" style="color: #888">{{item.date}}</span>
+              </div>
               <div class="msgTitle midFont pointer">
                 <span
-                  @mouseover="addUnderLine($event)"
-                  @mouseleave="removeUnderLine($event)"
+                 
+                  class="msgText"
                 >
                   {{ item.context }}</span
                 >
@@ -226,6 +236,10 @@ export default {
       // this.$router.push({name:item.url})
       window.open(item.url);
     },
+    toDetail(item){
+      console.log(item.id)
+      this.$router.push(`/bokeDetail?id=${item.id}`)
+    },
     changePage(current) {
       console.log("改变页数", current);
       this.loading = true;
@@ -240,12 +254,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "assets/css/page/home.less";
+@import url("../assets/css/page/home.less");
 .home {
-  // box-sizing: content-box;
   z-index: 100;
   padding: 0 4.5%;
-  // padding-bottom: 150px;
   width: 100%;
 }
 

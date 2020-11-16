@@ -98,6 +98,7 @@ export default {
   methods: {
     async loadData() {
       this.navList = await this.$api.json("homeNav");
+     
     },
     // 滚动事件
     handleScroll() {

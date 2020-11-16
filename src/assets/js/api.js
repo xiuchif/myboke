@@ -1,5 +1,20 @@
 import Request from "./request.js"
 import JSON from "./json"
+Date.prototype.Format = function  (fmt) { //author: zhengsh 2016-9-5 
+    var o = {
+         "M+": this.getMonth() + 1, //月份 
+       "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
 
 
 
@@ -61,40 +76,19 @@ const api = {
 		return (Math.random() * 10000000).toString(16).substr(0, 4) + (new Date()).getTime() + Math.random().toString().substr(
 			2, 4);
 	},
-	// 时间戳转时间
-	timeToDate:(timestamp)=>{
-        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-        var Y = date.getFullYear() + '-';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-        var D = date.getDate() + ' ';
-        var h = date.getHours() + ':';
-        var m = date.getMinutes()<10?'0'+date.getMinutes() + ':':date.getMinutes()+':';
-        var s = date.getSeconds();
-        return Y+M+D+h+m+s;
-        // .replace(/\//g, "-") 
-    },
-	// requestData: async (url, data, type) => { //获取数据
-	// 	let rtype = type || "post";
-	// 	let result;
-	// 	if (rtype == "get") {
-	// 		result = await Vue.prototype.$nhttp.get(url, data);
-	// 	} else {
-	// 		result = await Vue.prototype.$nhttp.post(url, data);
-	// 	}
-	// 	if (result.data.status == 1) {
-	// 		let data = result.data.data;
-	// 		if(data!=[]){
-	// 			return data
-	// 		}else{
-	// 			return {status:1}
-	// 		}
+	getDate: (date, slice = true) => {
+		let data = new Date(date).Format("yyyy-MM-dd hh:mm");
+		if (slice) {
+			let year = new Date().getFullYear();
+			if (data.slice(0, 4) == year) {
+				data = data.slice(5);
+			}
+		}
 
-	// 	} else {
-	// 		return data
-	// 		console.log(result);
-	// 	}
-	// },
-	// 基础代码
+		return data;
+	},
+	
+	
 
 }
 export default api
